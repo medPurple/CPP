@@ -1,4 +1,4 @@
-NAME			= phonebook
+NAME			= apocalypse
 
 CC				= c++
 
@@ -12,8 +12,8 @@ OBJS	= $(addprefix $(OBJDIR), $(OBJFILE))
 #SRCS	= $(addprefix $(SRCDIR), $(SRCFILE))
 
 SRCFILE	=	main.cpp \
-			Contact.cpp \
-			PhoneBook.cpp \
+			Zombie.cpp \
+			newZombie.cpp \
 
 
 GREEN		=	\e[92;5;118m
