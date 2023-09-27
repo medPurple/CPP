@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: purple <medpurple@student.42.fr>           +#+  +:+       +#+        */
+/*   By: purple <purple@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 14:43:54 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/09/25 15:08:35 by purple           ###   ########.fr       */
+/*   Updated: 2023/09/27 13:50:55 by purple           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ class PhoneBook{
                 
                 void setInfo(void);
                 void getInfo(void);
+                void little_display(void);
 };
 
 #endif

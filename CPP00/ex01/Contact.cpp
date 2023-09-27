@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   contact.cpp                                        :+:      :+:    :+:   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: purple <medpurple@student.42.fr>           +#+  +:+       +#+        */
+/*   By: purple <purple@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 18:32:22 by purple            #+#    #+#             */
-/*   Updated: 2023/09/25 20:30:33 by purple           ###   ########.fr       */
+/*   Updated: 2023/09/27 15:01:50 by purple           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,14 @@ bool Contact::create_contact()
     }
     std::cout << "Contact created\n" << std::endl;
     return (true);
+}
+
+std::string Contact::get_contact(int index)
+{
+    return (this->_info[index]);
+}
+
+std::string Contact::get_field(int index)
+{
+    return (this->_field[index]);
 }

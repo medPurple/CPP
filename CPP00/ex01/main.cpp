@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: purple <medpurple@student.42.fr>           +#+  +:+       +#+        */
+/*   By: purple <purple@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 14:55:24 by purple            #+#    #+#             */
-/*   Updated: 2023/09/25 21:03:45 by purple           ###   ########.fr       */
+/*   Updated: 2023/09/27 15:39:42 by purple           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main(void)
         if (std::cin.eof() == true)
         {
             std::cout << "[Interrut]\n";
-            exit(0);
+            return (0);
         }
         else if (input.compare("ADD") == 0)
             PhoneBook.setInfo();
@@ -36,9 +36,9 @@ int main(void)
         {
             std::cout << "[Exit]\n";
             run = false;
+            break;
         }
-        else
-            show_command();
+        show_command();
         input.clear();
     }
     if (run == true)

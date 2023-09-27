@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: purple <medpurple@student.42.fr>           +#+  +:+       +#+        */
+/*   By: purple <purple@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 14:47:47 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/09/25 18:41:40 by purple           ###   ########.fr       */
+/*   Updated: 2023/09/27 15:02:41 by purple           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ class Contact{
                 ~Contact(void);
                 
                 bool create_contact(void);
-                void get_contact(int index);
+                std::string get_contact(int index);
+                std::string get_field(int index);
+
                 
 };
 #endif
