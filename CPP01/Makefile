@@ -12,6 +12,6 @@ re: all
 
 $(SUBDIRS):
 	@echo "Cleaning in $@"
-	@$(MAKE) -C $@ fclean
+	@$(MAKE) -s -C $@ fclean
 
 .PHONY: all clean fclean re

@@ -12,9 +12,9 @@ OBJS	= $(addprefix $(OBJDIR), $(OBJFILE))
 #SRCS	= $(addprefix $(SRCDIR), $(SRCFILE))
 
 SRCFILE	=	main.cpp \
-			newZombie.cpp \
-			randomChump.cpp \
-			Zombie.cpp \
+			Weapon.cpp \
+			HumanA.cpp \
+			HumanB.cpp \
 
 
 GREEN		=	\e[92;5;118m

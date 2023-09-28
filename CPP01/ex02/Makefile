@@ -1,4 +1,4 @@
-NAME			= apocalypse
+NAME			= bilc
 
 CC				= c++
 
@@ -12,10 +12,6 @@ OBJS	= $(addprefix $(OBJDIR), $(OBJFILE))
 #SRCS	= $(addprefix $(SRCDIR), $(SRCFILE))
 
 SRCFILE	=	main.cpp \
-			newZombie.cpp \
-			randomChump.cpp \
-			Zombie.cpp \
-
 
 GREEN		=	\e[92;5;118m
 HGRN 		=	\e[1;92m

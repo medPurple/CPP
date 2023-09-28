@@ -14,6 +14,7 @@ OBJS	= $(addprefix $(OBJDIR), $(OBJFILE))
 SRCFILE	=	main.cpp \
 			Zombie.cpp \
 			newZombie.cpp \
+			zombieHorde.cpp \
 
 
 GREEN		=	\e[92;5;118m
