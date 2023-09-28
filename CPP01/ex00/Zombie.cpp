@@ -11,7 +11,7 @@ Zombie::~Zombie(void)
     std::cout << this->name << SUPPRESSION_MSG << std::endl;
 }
 
-void    Zombie::annonce(void)
+void    Zombie::announce(void)
 {
     std::cout << this->name << ": BraiiiiiiinnnzzzZ...\n" << std::endl;
 }
