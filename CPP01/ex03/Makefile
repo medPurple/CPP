@@ -1,21 +1,17 @@
-NAME			= apocalypse
+NAME			= battle
 
 CC				= c++
 
 CPPFLAGS		= -Wall -Wextra -Werror -std=c++98
 
 OBJDIR	= obj/
-OBJFILE = $(SRCFILE:.cpp=.o)
+OBJFILE = $(SRCS:.cpp=.o)
 OBJS	= $(addprefix $(OBJDIR), $(OBJFILE))
 #OBJ			=	$(SRCFILE:.cpp=.o)
-#SRCDIR	= src/
-#SRCS	= $(addprefix $(SRCDIR), $(SRCFILE))
+SRCDIR	= src/
+SRCS	= $(addprefix $(SRCDIR), $(SRCFILE))
 
 SRCFILE	=	main.cpp \
-			Weapon.cpp \
-			HumanA.cpp \
-			HumanB.cpp \
-
 
 GREEN		=	\e[92;5;118m
 HGRN 		=	\e[1;92m
