@@ -1,4 +1,4 @@
-NAME			= apocalypse
+NAME			= harl
 
 CC				= c++
 
@@ -11,10 +11,8 @@ OBJS	= $(addprefix $(OBJDIR), $(OBJFILE))
 #SRCDIR	= src/
 #SRCS	= $(addprefix $(SRCDIR), $(SRCFILE))
 
-SRCFILE	=	main.cpp \
-			newZombie.cpp \
-			randomChump.cpp \
-			Zombie.cpp \
+SRCFILE	=	src/main.cpp
+			src/Harl.cpp
 
 
 GREEN		=	\e[92;5;118m
