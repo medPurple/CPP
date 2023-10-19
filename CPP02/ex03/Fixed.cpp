@@ -5,25 +5,21 @@
 
 Fixed::Fixed() //Default
 {
-    std::cout << "[Default]\tConstructeur called" << std::endl;
     setRawBits(0);
 }
 
 Fixed::Fixed(const int i) // Parametric
 {
-    std::cout << "[Parametric]\tConstructeur called" << std::endl;
     this->_value = (i << this->_FBit);
 }
 
 Fixed::Fixed(const float i) // Parametric
 {
-    std::cout << "[Parametric]\tConstructeur called" << std::endl;
     this->_value = roundf(i * (1 << this->_FBit));
 }
 
 Fixed::Fixed(const Fixed& obj) // Copy
 {
-    std::cout << "[Copy]\tconstructor called" << std::endl;
     *this = obj;
 }
 
@@ -34,66 +30,67 @@ Fixed::Fixed(const Fixed& obj) // Copy
 
 Fixed& Fixed::operator=(const Fixed& obj) // =
 {
-    std::cout << "[Operator]\tassignment called" << std::endl;
     setRawBits(obj.getRawBits());
     return (*this);
 }
 
 bool    Fixed::operator> (const Fixed& rhs) const // >
 {
-    std::cout << "[Operator]\tassignment called" << std::endl;
     return (this->getRawBits() > rhs.getRawBits());
 }
 
 bool    Fixed::operator< (const Fixed& rhs) const // <
 {
-    std::cout << "[Operator]\tassignment called" << std::endl;
     return (this->getRawBits() < rhs.getRawBits());
 }
 
 bool    Fixed::operator>= (const Fixed& rhs) const // >=
 {
-    std::cout << "[Operator]\tassignment called" << std::endl;
     return (this->getRawBits() >= rhs.getRawBits());
 }
 
 bool    Fixed::operator<= (const Fixed& rhs) const // <=
 {
-    std::cout << "[Operator]\tassignment called" << std::endl;
     return (this->getRawBits() <= rhs.getRawBits());
 }
 
 bool    Fixed::operator== (const Fixed& rhs) const // ==
 {
-    std::cout << "[Operator]\tassignment called" << std::endl;
     return (this->getRawBits() == rhs.getRawBits());
 }
 
 bool    Fixed::operator!= (const Fixed& rhs) const // !=
 {
-    std::cout << "[Operator]\tassignment called" << std::endl;
     return (this->getRawBits() != rhs.getRawBits());
 }
 
 
 Fixed	Fixed::operator+(const Fixed& rhs) const // +
 {
-    return (this->_value + rhs._value);
+    Fixed result;
+
+    result.setRawBits(this->getRawBits() + rhs.getRawBits());
+    return (result);
 }
 
 Fixed	Fixed::operator- (const Fixed& rhs) const // -
 {
-    return (this->_value - rhs._value);
+    Fixed result;
+
+    result.setRawBits(this->getRawBits() - rhs.getRawBits());
+    return (result);
 }
 
 Fixed	Fixed::operator* (const Fixed& rhs) const // *
 {
-    return (this->toFloat() * rhs.toFloat());
+    Fixed result(this->toFloat() * rhs.toFloat());
+    return (result);
 }
 
 Fixed	Fixed::operator/ (const Fixed& rhs) const // /
 {
-    return (this->toFloat() / rhs.toFloat());
+    Fixed result(this->toFloat() / rhs.toFloat());
+    return (result);
 }
 
 
@@ -130,7 +127,6 @@ Fixed   Fixed::operator--(int)
 
 Fixed::~Fixed()
 {
-    std::cout << "[Default]\tDestructor called" << std::endl;
 }
 
 
@@ -140,15 +136,11 @@ Fixed::~Fixed()
 
 void Fixed::setRawBits(const int nb)
 {
-     std::cout << "[Fonction]\tsetRawbits called" << std::endl;
-
     this->_value = nb;
 }
 
 int Fixed::getRawBits() const
 {
-    std::cout << "[Fonction]\tgetRawBits called" << std::endl;
-
     return (this->_value);
 }
 

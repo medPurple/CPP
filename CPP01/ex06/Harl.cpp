@@ -19,30 +19,15 @@ void Harl::complain(std::string str)
     switch (i)
     {
         case 0:
-        {
             this->_debug();
-            break;
-        }
         case 1:
-        {
             this->_info();
-            break;
-        }
         case 2:
-        { 
             this->_warning();
-            break;
-        }
         case 3:
-        {
             this->_error();
-            break;
-        }
         default:
-        {
             std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
-            break;
-        }
     }
 }
 
