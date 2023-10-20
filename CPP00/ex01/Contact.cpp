@@ -6,12 +6,13 @@
 /*   By: purple <purple@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 18:32:22 by purple            #+#    #+#             */
-/*   Updated: 2023/09/27 15:01:50 by purple           ###   ########.fr       */
+/*   Updated: 2023/10/02 10:17:30 by purple           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/PhoneBook.hpp"
 #include "include/Contact.hpp"
+#include <stdlib.h>
 
 std::string Contact::_field[5] =
 {
@@ -44,7 +45,7 @@ bool Contact::create_contact()
             if (std::cin.eof() == true)
             {
                 std::cout << "[Interrupt]" << std::endl;
-                return (false);
+                exit(0);
             }
             else if (this->_info[i].length() == 0)
             {

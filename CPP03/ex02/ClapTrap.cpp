@@ -3,16 +3,16 @@
 ClapTrap::ClapTrap(void):	_name("Unknow"),
 						_hpoint(10),
 						_energy(10),
-						_ad(0){std::cout << "[Default]\t Constructor called" << std::endl;}
+						_ad(0){std::cout << "[Default CT]\t Constructor called" << std::endl;}
 
 ClapTrap::ClapTrap(std::string str):	_name(str),
 										_hpoint(10),
 										_energy(10),
-										_ad(0){std::cout << "[Param]\t Constructor called" << std::endl;}
+										_ad(0){std::cout << "[Param CT]\t Constructor called" << std::endl;}
 
-ClapTrap::ClapTrap(const ClapTrap& copy){*this = copy; std::cout << "[Copy]\t Constructor called" << std::endl;}
+ClapTrap::ClapTrap(const ClapTrap& copy){*this = copy; std::cout << "[Copy CT]\t Constructor called" << std::endl;}
 
-ClapTrap::~ClapTrap(){std::cout << "[Default]\t Destructor called" << std::endl;}
+ClapTrap::~ClapTrap(){std::cout << "[Default CT]\t Destructor called" << std::endl;}
 
 // Operator
 
@@ -20,7 +20,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& rhs){*this = rhs; return *this;}
 
 std::ostream& operator>>(std::ostream& o, const ClapTrap& rhs)
 {
-	o	<< "----------------------------------\n"
+	o	<< "---------------ClapTrap-----------\n"
 		<< "[Name]\t" << rhs.get_name() << "\n"
 		<< "[HP]\t" << rhs.get_hp() << "\n"
 		<< "[AD]\t" << rhs.get_ad() << "\n"
@@ -32,6 +32,9 @@ std::ostream& operator>>(std::ostream& o, const ClapTrap& rhs)
 // Setter
 
 void 			ClapTrap::set_ad(unsigned int ad){this->_ad = ad;}
+void 			ClapTrap::set_energy(unsigned int e){this->_energy = e;}
+void 			ClapTrap::set_hp(unsigned int hp){this->_hpoint = hp;}
+void			ClapTrap::set_name(std::string str){this->_name = str;}
 
 
 // Getter

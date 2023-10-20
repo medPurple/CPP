@@ -6,7 +6,7 @@
 /*   By: purple <purple@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 14:55:24 by purple            #+#    #+#             */
-/*   Updated: 2023/09/27 15:39:42 by purple           ###   ########.fr       */
+/*   Updated: 2023/10/02 10:15:55 by purple           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int main(void)
     std::string input;
     bool        run = true;
 
-    show_command();
     while(run && std::getline(std::cin, input))
     {
+        show_command();
         if (std::cin.eof() == true)
         {
             std::cout << "[Interrut]\n";
@@ -38,7 +38,7 @@ int main(void)
             run = false;
             break;
         }
-        show_command();
+        
         input.clear();
     }
     if (run == true)
