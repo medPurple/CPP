@@ -16,7 +16,17 @@ ClapTrap::~ClapTrap(){std::cout << "[Default CT]\t Destructor called" << std::en
 
 // Operator
 
-ClapTrap& ClapTrap::operator=(const ClapTrap& rhs){*this = rhs; return *this;}
+ClapTrap& ClapTrap::operator=(const ClapTrap& rhs)
+{
+	if (this != &rhs)
+	{
+		this->_ad = rhs._ad;
+		this->_hpoint = rhs._hpoint;
+		this->_energy = rhs._energy;
+		this->_name = rhs._name;
+	}
+	return (*this);
+}
 
 std::ostream& operator>>(std::ostream& o, const ClapTrap& rhs)
 {

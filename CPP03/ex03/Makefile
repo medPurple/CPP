@@ -1,8 +1,8 @@
-DEFAULT_TARGET = apocalypse
+DEFAULT_TARGET = trap
 TARGET ?= $(DEFAULT_TARGET)
 
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -std=c++98
 
 SRC_DIR = src
 OBJ_DIR = .obj
