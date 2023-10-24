@@ -12,7 +12,7 @@ OBJ_FILES = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC_FILES))
 NUM_FILES = $(words $(SRC_FILES))
 CUR_FILE = 0
 
-USAGE		= @printf "$(CURSIVE)$(CYAN)\t[use $(PURPLE)./$(TARGET) $(CYAN) to start the program] \n"
+USAGE		=	@printf "$(CURSIVE)$(CYAN)\t[use $(PURPLE)./$(TARGET) $(CYAN) to start the program] \n"
 GREEN		=	\033[92;5;118m
 HGRN 		=	\033[1;92m
 GRAY		=	\033[33;2;37m
@@ -24,7 +24,7 @@ CURSIVE		=	\033[33;3m
 all: $(TARGET)
 
 $(TARGET): $(OBJ_FILES)
-	@$(CXX) $(CXXFLAGS) main.cpp -o $(TARGET) $(OBJ_FILES)
+	@$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJ_FILES)
 	@printf "\n\tCompilation of $(TARGET)$(CURSIVE)$(GREEN) DONE\n$(RESET)"
 	$(USAGE)
 	
@@ -46,4 +46,6 @@ fclean: clean
 	@rm -f $(TARGET)
 	@printf "$(CURSIVE)$(GREEN)\t done\n$(RESET)\n"
 
-.PHONY: all clean
+re: fclean all
+
+.PHONY: all clean re

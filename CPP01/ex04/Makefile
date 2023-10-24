@@ -1,4 +1,4 @@
-DEFAULT_TARGET = apocalypse
+DEFAULT_TARGET = sed
 TARGET ?= $(DEFAULT_TARGET)
 
 CXX = c++
@@ -24,7 +24,7 @@ CURSIVE		=	\033[33;3m
 all: $(TARGET)
 
 $(TARGET): $(OBJ_FILES)
-	@$(CXX) $(CXXFLAGS) main.cpp -o $(TARGET) $(OBJ_FILES)
+	@$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJ_FILES)
 	@printf "\n\tCompilation of $(TARGET)$(CURSIVE)$(GREEN) DONE\n$(RESET)"
 	$(USAGE)
 	
@@ -46,4 +46,6 @@ fclean: clean
 	@rm -f $(TARGET)
 	@printf "$(CURSIVE)$(GREEN)\t done\n$(RESET)\n"
 
-.PHONY: all clean
+re: fclean all
+
+.PHONY: all clean re

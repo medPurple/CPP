@@ -3,7 +3,7 @@
 #include "ClapTrap.hpp"
 #include <iostream>
 
-class FragTrap: public ClapTrap
+class FragTrap: virtual public ClapTrap
 {
 	public :
 				FragTrap();
@@ -14,6 +14,11 @@ class FragTrap: public ClapTrap
 				FragTrap&	operator=(const FragTrap& rhs);
 
 				void highFivesGuys(void);
+
+	protected :
+				static const int default_hp = 100;
+				static const int default_e = 100;
+				static const int default_ad = 30;
 
 };
 

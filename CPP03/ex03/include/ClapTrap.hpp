@@ -7,9 +7,9 @@ class ClapTrap
 {
 	protected	:
 				std::string _name;
-				int _hpoint;
-				int _energy;
-				int _ad;
+				unsigned int _hpoint;
+				unsigned int _energy;
+				unsigned int _ad;
 	
 	public	:
 				ClapTrap(void);
@@ -19,17 +19,12 @@ class ClapTrap
 
 				ClapTrap&	operator=(const ClapTrap& rhs);
 
-				void 		set_ad(unsigned int ad);
-				virtual void 		set_name(std::string str);
-				void		set_hp(unsigned int hp);
-				void		set_energy(unsigned int e);
-
 				virtual std::string get_name(void) const;
 				int			get_hp(void) const;
 				int			get_energy(void) const;
 				int			get_ad(void) const;
 
-				virtual void attack(const std::string& target);
+				void attack(const std::string& target);
 				void takeDamage(unsigned int amount);
 				void beRepaired(unsigned int amount);
 };

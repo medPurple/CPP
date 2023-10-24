@@ -10,7 +10,12 @@ ClapTrap::ClapTrap(std::string str):	_name(str),
 										_energy(10),
 										_ad(0){std::cout << "[Param CT]\t Constructor called" << std::endl;}
 
-ClapTrap::ClapTrap(const ClapTrap& copy){*this = copy; std::cout << "[Copy CT]\t Constructor called" << std::endl;}
+ClapTrap::ClapTrap(const ClapTrap& rhs){
+	this->_ad = rhs._ad;
+	this->_hpoint = rhs._hpoint;
+	this->_energy = rhs._energy;
+	this->_name = rhs._name;
+	 std::cout << "[Copy CT]\t Constructor called" << std::endl;}
 
 ClapTrap::~ClapTrap(){std::cout << "[Default CT]\t Destructor called" << std::endl;}
 
@@ -37,13 +42,6 @@ std::ostream& operator>>(std::ostream& o, const ClapTrap& rhs)
 		<< "----------------------------------\n" << std::endl;
 	return o;
 }
-
-// Setter
-
-void 			ClapTrap::set_ad(unsigned int ad){this->_ad = ad;}
-void 			ClapTrap::set_energy(unsigned int e){this->_energy = e;}
-void 			ClapTrap::set_hp(unsigned int hp){this->_hpoint = hp;}
-void			ClapTrap::set_name(std::string str){this->_name = str;}
 
 
 // Getter

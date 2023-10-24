@@ -1,52 +1,45 @@
 #include "../include/sed.h"
 
-
-int main(int ac, char **av)
-{
-	if (ac != 4)
-		return (error("You need 1 file and 2 arguments to use sed"),error("use ./sed [file] [search] [replace]"), 1);
-	const std::string		file 	= av[1];
-	const std::string		search	= av[2];
-	const std::string		replace	= av[3];
-	std::string				str;
-	std::ifstream			infile;
-	std::ofstream			outfile;
-
-	if (file.length() < 1 || search.length() < 1 || replace.length() < 1)
-		return (error("Empty arguments. Try again"), EXIT_FAILURE);
-	infile.open(file.c_str());
-	str.append(file);
-	str.append(".replace");
-	if (infile.is_open() == false)
-		return (error("[Error] open infile"), EXIT_FAILURE);
-	outfile.open(str.c_str(), std::fstream::out | std::fstream::trunc);
-	str.clear();
-	if (outfile.is_open() == false)
-		return (infile.close(), error("[Error] open outfile"), EXIT_FAILURE);
-	while (std::getline(infile, str))
-	{
-		outfile << search_and_replace(str, search, replace);
-		if (infile.peek() != EOF)
-			outfile << std::endl;
-	}
-	return (infile.close(), outfile.close(), EXIT_SUCCESS);
-	
+void   replaceStr(const std::string& s1, const std::string& s2, std::ifstream& ifs, std::ofstream& ofs) {
+    
+    std::string line;
+    int pos;
+    while (std::getline(ifs, line)) {
+        pos = 0;
+        while (pos != -1){
+            pos = line.find(s1, pos);
+            if (pos != -1){
+                line.erase(pos, s1.length());
+                line.insert(pos, s2);
+                pos += s2.length();
+            }
+        }
+        ofs << line << std::endl;
+    }
+    ifs.close();
+    ofs.close();
 }
 
-std::string search_and_replace(std::string str, std::string search,std::string replace)
-{
-	unsigned long s_len = search.length();
-	unsigned long position = str.find(search, s_len);
-	while (position != std::string::npos)
-	{
-		str.erase(position, s_len);
-		str.insert(position,replace);
-		position = str.find(search, s_len);
-	}
-	return (str);
-}
 
-void error(std::string str)
-{
-	std::cout << str << std::endl;
+int main (int ac, char **av) {
+
+    if (ac != 4)
+        return std::cout << "usage: ./replace <filename> <s1> <s2>" << std::endl, -1;
+
+    std::string s1(av[2]);
+    std::string s2(av[3]);
+    if (s1.empty() || s2.empty())
+        return std::cout << "s1 and s2 must not be empty" << std::endl, -1;
+    
+    std::ifstream ifs(av[1]);
+    if (!ifs.is_open())
+        return std::cout << "could not open file" << std::endl, -1;
+
+    std::string replace_file_name((std::string)av[1] + ".replace");
+    std::ofstream ofs(replace_file_name.c_str(), std::ios::trunc); 
+    if (!ofs.is_open())
+        return std::cout << "could not create replace file" << std::endl, ifs.close(), -1;
+
+    replaceStr(s1, s2, ifs, ofs);
+    return 0;
 }

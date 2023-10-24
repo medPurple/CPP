@@ -24,7 +24,7 @@ CURSIVE		=	\033[33;3m
 all: $(TARGET)
 
 $(TARGET): $(OBJ_FILES)
-	@$(CXX) $(CXXFLAGS) main.cpp -o $(TARGET) $(OBJ_FILES)
+	@$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJ_FILES)
 	@printf "\n\tCompilation of $(TARGET)$(CURSIVE)$(GREEN) DONE\n$(RESET)"
 	$(USAGE)
 	
@@ -33,7 +33,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@mkdir -p $(@D)
 	@$(eval CUR_FILE := $(shell echo $$(($(CUR_FILE) + 1))))
 	@$(eval PERCENT := $(shell echo $$(($(CUR_FILE) * 100 / $(NUM_FILES)))))
-	@echo "$(CURSIVE)$(GRAY)[Compiling]$(RESET)$(GRAY) $< $(CURSIVE)[$(CUR_FILE)/$(NUM_FILES) files, $(PERCENT)%]$ \t$(RESET)✔\r"
+	@echo "$(CURSIVE)$(GRAY)[Compiling]\t$(RESET)$(GRAY)$<\t\t$(CURSIVE)[$(CUR_FILE)/$(NUM_FILES) files, $(PERCENT)%]$ \t\t$(RESET)✔\r"
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
@@ -46,4 +46,6 @@ fclean: clean
 	@rm -f $(TARGET)
 	@printf "$(CURSIVE)$(GREEN)\t done\n$(RESET)\n"
 
-.PHONY: all clean
+re: fclean all
+
+.PHONY: all clean fclean re

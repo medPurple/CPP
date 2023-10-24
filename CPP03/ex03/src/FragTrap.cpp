@@ -2,27 +2,40 @@
 
 FragTrap::FragTrap(void)
 {
-	this->set_name("Unknow");
-	this->set_ad(30);
-	this->set_hp(100);
-	this->set_energy(100);
+	this->_name = "Unknow";
+	this->_ad = this->default_ad;
+	this->_hpoint = this->default_hp;
+	this->_energy = this->default_e;;
 	std::cout << "[Default FT]\t Constructor called" << std::endl;
 }
 
 FragTrap::FragTrap(std::string str)
 {
-	this->set_name(str);
-	this->set_ad(30);
-	this->set_hp(100);
-	this->set_energy(100);
+	this->_name = str;
+	this->_ad = this->default_ad;
+	this->_hpoint = this->default_hp;
+	this->_energy = this->default_e;
 	std::cout << "[Param FT]\t Constructor called" << std::endl;
 }
 
-FragTrap::FragTrap(const FragTrap& copy){*this = copy; std::cout << "[Copy FT]\t Constructor called" << std::endl;}
+FragTrap::FragTrap(const FragTrap& rhs){
+	this->_ad = rhs._ad;
+	this->_hpoint = rhs._hpoint;
+	this->_energy = rhs._energy;
+	this->_name = rhs._name; std::cout << "[Copy FT]\t Constructor called" << std::endl;}
 
 FragTrap::~FragTrap(){std::cout << "[Default FT]\t Destructor called" << std::endl;}
 
-FragTrap& FragTrap::operator=(const FragTrap& rhs){*this = rhs; return *this;}
+FragTrap& FragTrap::operator=(const FragTrap& rhs){
+	if (this != &rhs)
+	{
+		this->_ad = rhs._ad;
+		this->_hpoint = rhs._hpoint;
+		this->_energy = rhs._energy;
+		this->_name = rhs._name;
+	}
+	return (*this);
+}
 
 
 std::ostream& operator>>(std::ostream& o, const FragTrap& rhs)
@@ -38,6 +51,6 @@ std::ostream& operator>>(std::ostream& o, const FragTrap& rhs)
 
 void FragTrap::highFivesGuys(void)
 {
-	std::cout	<< "[" << this->get_name() << "]"
+	std::cout	<< "[" << this->_name << "]"
 				<< " Yo mate let's high five !" << std::endl;
 }

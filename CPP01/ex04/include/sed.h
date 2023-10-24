@@ -1,10 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include <string>
 #include <fstream>
-#include <cstring>
-#include <stdlib.h>
+#include <string>
 
-void error(std::string str);
-std::string search_and_replace(std::string str, std::string search,std::string replace);
+void   replaceStr(const std::string& s1, const std::string& s2, std::ifstream& ifs, std::ofstream& ofs);
