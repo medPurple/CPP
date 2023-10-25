@@ -18,12 +18,7 @@ ScavTrap::ScavTrap(std::string str)
 	std::cout << "[Param ST]\t Constructor called" << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& rhs){
-	this->_ad = rhs._ad;
-	this->_hpoint = rhs._hpoint;
-	this->_energy = rhs._energy;
-	this->_name = rhs._name;
-	 std::cout << "[Copy ST]\t Constructor called" << std::endl;}
+ScavTrap::ScavTrap(const ScavTrap& rhs){*this = rhs; std::cout << "[Copy ST]\t Constructor called" << std::endl;}
 
 ScavTrap::~ScavTrap(){std::cout << "[Default ST]\t Destructor called" << std::endl;}
 

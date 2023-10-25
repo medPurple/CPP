@@ -23,11 +23,7 @@ DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name), ScavTrap(name), Fra
     std::cout << "[Param DT]\t Constructor called" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(const DiamondTrap& rhs){
-	this->_ad = rhs._ad;
-	this->_hpoint = rhs._hpoint;
-	this->_energy = rhs._energy;
-	this->_name = rhs._name; std::cout << "[Copy DT]\t Constructor called" << std::endl;}
+DiamondTrap::DiamondTrap(const DiamondTrap& rhs){*this = rhs; std::cout << "[Copy DT]\t Constructor called" << std::endl;}
 
 
 //  Destructor

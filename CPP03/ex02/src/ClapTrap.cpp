@@ -10,12 +10,7 @@ ClapTrap::ClapTrap(std::string str):	_name(str),
 										_energy(10),
 										_ad(0){std::cout << "[Param CT]\t Constructor called" << std::endl;}
 
-ClapTrap::ClapTrap(const ClapTrap& rhs){	
-	this->_ad = rhs._ad;
-	this->_hpoint = rhs._hpoint;
-	this->_energy = rhs._energy;
-	this->_name = rhs._name;
-	std::cout << "[Copy CT]\t Constructor called" << std::endl;}
+ClapTrap::ClapTrap(const ClapTrap& rhs){*this = rhs; std::cout << "[Copy CT]\t Constructor called" << std::endl;}
 
 ClapTrap::~ClapTrap(){std::cout << "[Default CT]\t Destructor called" << std::endl;}
 

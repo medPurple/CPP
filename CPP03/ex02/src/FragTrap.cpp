@@ -18,12 +18,7 @@ FragTrap::FragTrap(std::string str)
 	std::cout << "[Param FT]\t Constructor called" << std::endl;
 }
 
-FragTrap::FragTrap(const FragTrap& rhs){
-		this->_ad = rhs._ad;
-		this->_hpoint = rhs._hpoint;
-		this->_energy = rhs._energy;
-		this->_name = rhs._name; 
-		std::cout << "[Copy FT]\t Constructor called" << std::endl;}
+FragTrap::FragTrap(const FragTrap& rhs){*this = rhs; std::cout << "[Copy FT]\t Constructor called" << std::endl;}
 
 FragTrap::~FragTrap(){std::cout << "[Default FT]\t Destructor called" << std::endl;}
 
