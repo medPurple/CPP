@@ -1,4 +1,4 @@
-DEFAULT_TARGET = harl
+DEFAULT_TARGET = weapon
 TARGET ?= $(DEFAULT_TARGET)
 
 CXX = c++

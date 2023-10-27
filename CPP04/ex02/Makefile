@@ -1,4 +1,4 @@
-DEFAULT_TARGET = claptrap
+DEFAULT_TARGET = Animal
 TARGET ?= $(DEFAULT_TARGET)
 
 CXX = c++
@@ -6,7 +6,9 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC_DIR = src
 OBJ_DIR = .obj
+INCLUDE_DIR = include
 SRC_FILES = $(wildcard $(SRC_DIR)/*.cpp)
+HDR_FILES = $(wildcard $(INCLUDE_DIR)/*.h)
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC_FILES))
 
 NUM_FILES = $(words $(SRC_FILES))
@@ -26,15 +28,16 @@ all: $(TARGET)
 $(TARGET): $(OBJ_FILES)
 	@$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJ_FILES)
 	@printf "\n\tCompilation of $(TARGET)$(CURSIVE)$(GREEN) DONE\n$(RESET)"
+	@echo "Compiler flags used: $(CXXFLAGS)"
 	$(USAGE)
 	
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(HDR_FILES)
 	@mkdir -p $(@D)
 	@$(eval CUR_FILE := $(shell echo $$(($(CUR_FILE) + 1))))
 	@$(eval PERCENT := $(shell echo $$(($(CUR_FILE) * 100 / $(NUM_FILES)))))
 	@echo "$(CURSIVE)$(GRAY)[Compiling]$(RESET)$(GRAY) $< $(CURSIVE)[$(CUR_FILE)/$(NUM_FILES) files, $(PERCENT)%]$ \t$(RESET)✔\r"
-	@$(CXX) $(CXXFLAGS) -c $< -o $@
+	@$(CXX) $(CXXFLAGS) -I$(INCLUDE_DIR) -c $< -o $@
 
 clean:
 	@printf "$(CURSIVE)$(GRAY)- [Removing] $(TARGET) object ... $(RESET)"
@@ -46,4 +49,6 @@ fclean: clean
 	@rm -f $(TARGET)
 	@printf "$(CURSIVE)$(GREEN)\t done\n$(RESET)\n"
 
-.PHONY: all clean
+re : fclean all
+
+.PHONY: all clean re
