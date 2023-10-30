@@ -22,7 +22,7 @@ class Character : public ICharacter
 					Character();
 
 	public 		:	
-					Character(std::string);
+					Character(std::string name);
 					Character(const Character& rhs);
 					virtual ~Character();
 

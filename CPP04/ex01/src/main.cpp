@@ -50,15 +50,15 @@ int main(void)
 
 	for (int a = 0; a < 10; a++)
 	{
-		std::cout << "[Creation]-------------" << std::endl;
-		if (a < a/2)
+		std::cout << "[Creation]-------------" << a << std::endl;
+		if (a < 5)
 			tab[a] = new Dog();
 		else
 			tab[a] = new Cat();
 	}
 	for (int a = 0; a < 10; a++)
 	{
-		std::cout << "[Destruction]------------" << std::endl;
+		std::cout << "[Destruction]------------" << a << std::endl;
 		delete tab[a];
 	}
 

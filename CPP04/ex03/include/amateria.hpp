@@ -5,7 +5,7 @@
 
 class AMateria
 {
-	protected:
+	protected :
 				std::string _type;
 
 	public:
@@ -41,5 +41,5 @@ class MateriaSource : public IMateriaSource
 				MateriaSource& operator=(const MateriaSource& rhs);
 
 				void learnNateria(AMateria* rhs);
-				AMateria* createMateria(std::string const& type) 
+				AMateria* createMateria(std::string const& type);
 };
