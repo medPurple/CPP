@@ -20,26 +20,31 @@ int main(void)
 	std::cout << "\n[Animal]\n" << std::endl;
 	delete k;
 
-	std::cout << "\n\tCopy Constructor" << std::endl;	
+	std::cout << "\n\Different Constructor" << std::endl;	
 
 	std::cout << "\n[Stack Cat]\n" << std::endl;
 	Cat cat;
 	cat.fill_brain();
 	std::cout << "BRAIN CAT " << cat.show_brain() << std::endl;
+
 	std::cout << "\n[Attribution Cat]\n" << std::endl;	
 	Cat A_cat = cat;
 	std::cout << "BRAIN CAT " << A_cat.show_brain() << std::endl;
+
 	std::cout << "\n[Copy Cat]\n" << std::endl;	
 	Cat C_cat(cat);
 	std::cout << "BRAIN CAT " << C_cat.show_brain() << std::endl;
 
 	std::cout << "\n[Stack Dog]\n" << std::endl;	
+
 	Dog dog;
 	dog.fill_brain();
 	std::cout << "BRAIN DOG " << dog.show_brain() << std::endl;
+
 	std::cout << "\n[Stack Dog]\n" << std::endl;	
 	Dog A_dog = dog;
 	std::cout << "BRAIN DOG " << A_dog.show_brain() << std::endl;
+	
 	std::cout << "\n[Stack Dog]\n" << std::endl;	
 	Dog C_dog(dog);
 	std::cout << "BRAIN DOG " << C_dog.show_brain() << std::endl;

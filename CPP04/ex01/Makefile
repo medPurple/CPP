@@ -8,7 +8,7 @@ SRC_DIR = src
 OBJ_DIR = .obj
 INCLUDE_DIR = include
 SRC_FILES = $(wildcard $(SRC_DIR)/*.cpp)
-HDR_FILES = $(wildcard $(INCLUDE_DIR)/*.h)
+HDR_FILES = $(wildcard $(INCLUDE_DIR)/*.hpp)
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC_FILES))
 
 NUM_FILES = $(words $(SRC_FILES))

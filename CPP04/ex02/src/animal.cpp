@@ -19,4 +19,3 @@ std::string AAnimal::get_type(void) const {return this->_type;}
 
 // Fonction
 
-void AAnimal::makeSound() const { std::cout << "Strange sound " << std::endl;}

@@ -3,6 +3,8 @@
 #include <iostream>
 #include "character.hpp"
 
+class ICharacter;
+
 class AMateria
 {
 	protected :
@@ -13,7 +15,7 @@ class AMateria
 				AMateria(std::string const & type);
 				AMateria(const AMateria& rhs);
 				AMateria &operator=(const AMateria &rhs);
-				~AMateria();
+				virtual ~AMateria();
 
 				std::string const & getType() const;
 				virtual AMateria* clone() const = 0;
@@ -36,10 +38,10 @@ class MateriaSource : public IMateriaSource
 	public		:
 				MateriaSource();
 				MateriaSource(const MateriaSource& rhs);
-				virtual ~MateriaSource();
+				~MateriaSource();
 
 				MateriaSource& operator=(const MateriaSource& rhs);
 
-				void learnNateria(AMateria* rhs);
+				void learnMateria(AMateria* m);
 				AMateria* createMateria(std::string const& type);
 };

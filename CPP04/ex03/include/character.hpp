@@ -1,7 +1,11 @@
 #pragma once
 
-#include "amateria.hpp"
 #include <iostream>
+#include "amateria.hpp"
+
+
+class AMateria;
+
 
 class ICharacter
 {
@@ -24,7 +28,7 @@ class Character : public ICharacter
 	public 		:	
 					Character(std::string name);
 					Character(const Character& rhs);
-					virtual ~Character();
+					~Character();
 
 					Character& operator=(const Character& rhs);
 

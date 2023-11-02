@@ -14,13 +14,16 @@ std::string const& AMateria::getType()const {
 
 void AMateria::use(ICharacter& target) {
 
-	int i;
+	int j = 0;
 
 	std::string str[2] = {"ice", "cure"};
 	for (int i = 0; i < 2; i++)
 		if (this->_type == str[i])
+		{
+			j = i;
 			break;
-	switch (i)
+		}
+	switch (j)
 	{
 	case 0:
 		std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;

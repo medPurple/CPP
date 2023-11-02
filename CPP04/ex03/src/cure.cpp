@@ -1,7 +1,7 @@
 #include "spell.hpp"
 
 
-Cure::Cure() : AMateria("Cure"){std::cout << "[Cure] Default constructor called" << std::endl;}
+Cure::Cure() : AMateria("cure"){std::cout << "[Cure] Default constructor called" << std::endl;}
 
 Cure::Cure(const Cure& rhs) : AMateria(rhs.getType()){std::cout << "[Cure] Copy constructor called" << std::endl; *this = rhs;}
 

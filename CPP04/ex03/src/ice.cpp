@@ -1,7 +1,7 @@
 #include "spell.hpp"
 
 
-Ice::Ice() : AMateria("cure"){std::cout << "[Ice] Default constructor called" << std::endl;}
+Ice::Ice() : AMateria("ice"){std::cout << "[Ice] Default constructor called" << std::endl;}
 
 Ice::Ice(const Ice& rhs) : AMateria(rhs.getType()){std::cout << "[Ice] Copy constructor called" << std::endl; *this = rhs;}
 
