@@ -8,7 +8,7 @@ class Ice : public AMateria
 	public	:
 			Ice();
 			Ice(const Ice& rhs);
-			virtual ~Ice();
+			~Ice();
 
 			Ice& operator=(const Ice& rhs);
 
@@ -20,7 +20,7 @@ class Cure : public AMateria
 	public	:
 			Cure();
 			Cure(const Cure& rhs);
-			virtual ~Cure();
+			~Cure();
 
 			Cure& operator=(const Cure& rhs);
 

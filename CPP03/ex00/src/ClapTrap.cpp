@@ -45,10 +45,10 @@ void 			ClapTrap::set_ad(unsigned int ad){this->_ad = ad;}
 
 // Getter
 
-std::string 	ClapTrap::get_name(void) const{return this->_name;}
-int 			ClapTrap::get_ad(void) const{return this->_ad;}
-int 			ClapTrap::get_energy(void) const{return this->_energy;}
-int 			ClapTrap::get_hp(void) const{return this->_hpoint;}
+std::string 			ClapTrap::get_name(void) const{return this->_name;}
+unsigned int 			ClapTrap::get_ad(void) const{return this->_ad;}
+unsigned int 			ClapTrap::get_energy(void) const{return this->_energy;}
+unsigned int 			ClapTrap::get_hp(void) const{return this->_hpoint;}
 
 
 // Fonction
@@ -78,7 +78,10 @@ void ClapTrap::takeDamage(unsigned int amount)
 {
 	if (this->_hpoint > 0)
 	{
-		this->_hpoint = this->_hpoint - amount;
+		if (amount <= this->_hpoint)
+			this->_hpoint = this->_hpoint - amount;
+		else
+			this->_hpoint = 0;
 		std::cout	<< "ClapTrap "
 					<< this->_name
 					<< " took "
@@ -98,14 +101,27 @@ void ClapTrap::beRepaired(unsigned int amount)
 {
 	if (this->_hpoint < 10 && this->_energy > 0)
 	{
-		this->_hpoint = this->_hpoint + amount;
-		this->_energy--;
-		std::cout	<< "ClapTrap "
+		if (this->_hpoint + amount <= 10)
+		{
+			this->_hpoint = this->_hpoint + amount;
+			this->_energy--;
+			std::cout	<< "ClapTrap "
 					<< this->_name
 					<< " gain "
 					<< amount
 					<< " HP"
 					<< std::endl;
+		}
+		else
+		{
+			this->_hpoint = 10;
+			this->_energy--;
+			std::cout	<< "ClapTrap "
+						<< this->_name
+						<< " is now full life."
+						<< std::endl;
+		}
+
 	}
 	else if (this->_hpoint < 10 && this->_energy == 0)
 	{

@@ -13,6 +13,9 @@ int main(void)
 	me->equip(tmp);
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
+	ICharacter* toome(me);
+	toome->use(0, *me);
+	toome->use(1, *me);
 	ICharacter* bob = new Character("bob");
 	me->use(0, *bob);
 	me->use(1, *bob);

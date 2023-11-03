@@ -27,5 +27,4 @@ int main(void)
 	std::cout >> p1;
 	std::cout >> p2;
 	std::cout >> p3;
-	std::cout >> p4;
 }

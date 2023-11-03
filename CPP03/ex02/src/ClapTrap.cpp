@@ -50,9 +50,9 @@ void			ClapTrap::set_name(std::string str){this->_name = str;}
 // Getter
 
 std::string 	ClapTrap::get_name(void) const{return this->_name;}
-int 			ClapTrap::get_ad(void) const{return this->_ad;}
-int 			ClapTrap::get_energy(void) const{return this->_energy;}
-int 			ClapTrap::get_hp(void) const{return this->_hpoint;}
+unsigned int 			ClapTrap::get_ad(void) const{return this->_ad;}
+unsigned int 			ClapTrap::get_energy(void) const{return this->_energy;}
+unsigned int 			ClapTrap::get_hp(void) const{return this->_hpoint;}
 
 
 // Fonction
@@ -82,6 +82,10 @@ void ClapTrap::takeDamage(unsigned int amount)
 {
 	if (this->_hpoint > 0)
 	{
+		if (amount <= this->_hpoint)
+			this->_hpoint = this->_hpoint - amount;
+		else
+			this->_hpoint = 0;
 		this->_hpoint = this->_hpoint - amount;
 		std::cout	<< "ClapTrap "
 					<< this->_name
