@@ -15,6 +15,8 @@ class ICharacter
 			virtual void equip(AMateria* m) = 0;
 			virtual void unequip(int idx) = 0;
 			virtual void use(int idx, ICharacter& target) = 0;
+			virtual	AMateria *stuff_adress(int idx) = 0;
+
 };
 
 
@@ -36,4 +38,5 @@ class Character : public ICharacter
 					void equip(AMateria* m);
 					void unequip(int idx);
 					void use(int idx, ICharacter& target);
+					AMateria *stuff_adress(int idx);
 };

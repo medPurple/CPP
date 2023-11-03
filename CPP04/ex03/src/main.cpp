@@ -19,6 +19,12 @@ int main(void)
 	ICharacter* bob = new Character("bob");
 	me->use(0, *bob);
 	me->use(1, *bob);
+
+	AMateria* tmp2;
+	tmp2 = me->stuff_adress(1);
+	me->unequip(1);
+
+	delete tmp2;
 	delete bob;
 	delete me;
 	delete src;

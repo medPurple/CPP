@@ -62,3 +62,9 @@ void Character::unequip(int idx){
 void Character::use(int idx, ICharacter& target){
 	this->_inventory[idx]->use(target);
 }
+
+AMateria *Character::stuff_adress(int idx){
+	if (_inventory[idx])
+		return _inventory[idx];
+	return (NULL);
+}
