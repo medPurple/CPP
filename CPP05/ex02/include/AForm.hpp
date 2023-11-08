@@ -6,18 +6,18 @@
 
 class Bureaucrat;
 
-class Form {
+class AForm {
 
 	public	:
 		// Coplien
-					Form();
-					Form(std::string name, int gradeS, int gradeE);
-					Form(const Form &rhs);
-					Form &operator=(const Form &rhs);
-					~Form();
+					AForm();
+					AForm(std::string name, int gradeS, int gradeE);
+					AForm(const AForm &rhs);
+					AForm &operator=(const AForm &rhs);
+					virtual ~AForm();
 		
 		// Fonctions
-					void beSigned(Bureaucrat ppl);
+					virtual void beSigned(Bureaucrat ppl) = 0;
 
 		// getter
 					std::string getName() const;
@@ -39,11 +39,11 @@ class Form {
 				const int			_require_grade_e;
 };
 
-std::ostream& operator<<(std::ostream& o, const Form& rhs);
+std::ostream& operator<<(std::ostream& o, const AForm& rhs);
 
 
-#define FDconst "[Form] Default constructor called"
-#define FPconst "[Form] Parametric constructor called"
-#define FCconst "[Form] Copy constructor called"
-#define FAop 	"[Form] Assignement operator called"
-#define FDdest "[Form] Default destructor called"
+#define FDconst "[AForm] Default constructor called"
+#define FPconst "[AForm] Parametric constructor called"
+#define FCconst "[AForm] Copy constructor called"
+#define FAop 	"[AForm] Assignement operator called"
+#define FDdest "[AForm] Default destructor called"

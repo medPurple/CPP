@@ -1,33 +1,32 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
 
 /*-----------------------Coplien-----------------------------------*/
 
-Form::Form() :
-	_name("Form"),
+AForm::AForm() :
+	_name("AForm"),
 	_is_signed(false),
 	_require_grade_s(0),
 	_require_grade_e(0)
-{/*std::cout << FDconst << std::endl;*/};
+{};
 
-Form::Form(std::string name, int gradeS, int gradeE) :
+AForm::AForm(std::string name, int gradeS, int gradeE) :
 	_name(name),
 	_is_signed(false),
 	_require_grade_s(gradeS),
 	_require_grade_e(gradeE)
-{/*std::cout << FPconst << std::endl;*/};
+{};
 
-Form::Form(const Form &rhs) :
+AForm::AForm(const AForm &rhs) :
 	_name(rhs.getName()),
 	_is_signed(rhs.isSigned()),
 	_require_grade_s(rhs.getGradeS()),
 	_require_grade_e(rhs.getGradeE())
-	{/*std::cout << FCconst << std::endl;*/};
+{};
 
-Form &Form::operator=(const Form &rhs)
+AForm &AForm::operator=(const AForm &rhs)
 {
-	//std::cout << FAop << std::endl;
 	const_cast<std::string&>(this->_name) = rhs.getName();
 	this->_is_signed = rhs.isSigned();
 	const_cast<int&>(this->_require_grade_e) = rhs.getGradeE();
@@ -35,13 +34,12 @@ Form &Form::operator=(const Form &rhs)
 	return *this;
 };
 
-Form::~Form(){
-	//std::cout << FDdest << std::endl;
+AForm::~AForm(){
 };
 
 /*-------------------------Operator--------------------------------*/
 
-std::ostream& operator<<(std::ostream& o, const Form& rhs){
+std::ostream& operator<<(std::ostream& o, const AForm& rhs){
 	o	<< "Name : " << rhs.getName() << std::endl
 		<< "Signed ? " << (rhs.isSigned() ? "true" : "false") << std::endl
 		<< "Grade to sign : " << rhs.getGradeS() << std::endl
@@ -54,36 +52,36 @@ std::ostream& operator<<(std::ostream& o, const Form& rhs){
 /*-------------------------Getter----------------------------------*/
 
 
-std::string Form::getName() const{
+std::string AForm::getName() const{
 	return this->_name;
 }
 
-bool		Form::isSigned() const{
+bool		AForm::isSigned() const{
 	return this->_is_signed;
 }
 
-int			Form::getGradeS() const{
+int			AForm::getGradeS() const{
 	return this->_require_grade_s;
 }
 
-int			Form::getGradeE() const{
+int			AForm::getGradeE() const{
 	return this->_require_grade_e;
 }
 
 /*-------------------------Exceptions--------------------------*/
 
-const char* Form::GradeTooHighException::what() const throw() {
+const char* AForm::GradeTooHighException::what() const throw() {
 	return ("Grade too high");
 };
 
-const char* Form::GradeTooLowException::what() const throw() {
+const char* AForm::GradeTooLowException::what() const throw() {
 	return ("Grade too low");
 };
 
 /*-------------------------Fonctions-----------------------------*/
 
 
-void Form::beSigned(Bureaucrat ppl){
+void AForm::beSigned(Bureaucrat ppl){
 	if (ppl.getGrade() > this->getGradeS())
 		throw GradeTooLowException();
 	if (ppl.getGrade() < 0)

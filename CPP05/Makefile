@@ -1,4 +1,4 @@
-SUBDIRS = ex00 ex01 ex02
+SUBDIRS = ex00 ex01 ex02 ex03
 
 .PHONY: all clean fclean re $(SUBDIRS)
 

@@ -1,4 +1,4 @@
-DEFAULT_TARGET = materia
+DEFAULT_TARGET = bureaucraft
 TARGET ?= $(DEFAULT_TARGET)
 
 CXX = c++

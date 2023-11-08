@@ -1,28 +1,20 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
-Bureaucrat::Bureaucrat() : _name("stagiaire"), _grade(150) {
-	//std::cout << Dconst << std::endl;
-};
+Bureaucrat::Bureaucrat() : _name("stagiaire"), _grade(150) {};
 
 Bureaucrat::Bureaucrat(std::string name, int grade) :  _name(name), _grade(grade){
-	this->check_grade();
-	//std::cout << Pconst << std::endl;
-};
+	this->check_grade();};
 
-Bureaucrat::Bureaucrat(const Bureaucrat &rhs):  _name(rhs.getName()), _grade(rhs.getGrade()){
-	//std::cout << Cconst << std::endl;
-};
+Bureaucrat::Bureaucrat(const Bureaucrat &rhs):  _name(rhs.getName()), _grade(rhs.getGrade()){};
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs){
-	//std::cout << Aconst << std::endl;
 	this->_grade = rhs.getGrade();
 	const_cast<std::string&>(this->_name) = rhs.getName();
 	return *this;
 };
 
 Bureaucrat::~Bureaucrat(){
-	//std::cout << Ddest << std::endl;
 };
 
 int Bureaucrat::getGrade() const{
@@ -34,29 +26,44 @@ std::string Bureaucrat::getName() const{
 }
 
 void Bureaucrat::dgrade(){
-	this->_grade++;
-	this->check_grade();
+	try{
+		this->_grade++;
+		this->check_grade();
+	}
+	catch (const Bureaucrat::GradeTooHighException& e){
+		this->_grade--;
+		std::cerr << e.what() << std::endl;}
+	catch (const Bureaucrat::GradeTooLowException& e){
+		this->_grade--;
+		std::cerr << e.what() << std::endl;}
+	catch (...){
+		this->_grade--;
+		std::cerr << "Unknow" << std::endl;}
 }
 
 void Bureaucrat::igrade(){
-	this->_grade--;
-	this->check_grade();
+	try{
+		this->_grade--;
+		this->check_grade();
+	}
+	catch (const Bureaucrat::GradeTooHighException& e){
+		this->_grade++;
+		std::cerr << e.what() << std::endl;}
+	catch (const Bureaucrat::GradeTooLowException& e){
+		this->_grade++;
+		std::cerr << e.what() << std::endl;}
+	catch (...){
+		this->_grade++;
+		std::cerr << "Unknow" << std::endl;}
+	
 }
 
 void Bureaucrat::check_grade() const{
-	
-	try{
-		if (this->_grade < 1)
-			throw GradeTooHighException();
-		if (this->_grade > 150)
-			throw GradeTooLowException();
-	}
-	catch (const Bureaucrat::GradeTooHighException& e){
-		std::cerr << e.what() << std::endl;}
-	catch (const Bureaucrat::GradeTooLowException& e){
-		std::cerr << e.what() << std::endl;}
-	catch (...){
-		std::cerr << "Unknow" << std::endl;}
+
+	if (this->_grade < 1)
+		throw GradeTooHighException();
+	if (this->_grade > 150)
+		throw GradeTooLowException();
 }
 
 void Bureaucrat::signForm(Form &form){
