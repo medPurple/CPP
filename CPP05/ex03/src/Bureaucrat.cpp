@@ -3,7 +3,7 @@
 
 /*-----------------------Coplien-----------------------------*/
  
-Bureaucrat::Bureaucrat() : _name("stagiaire"), _grade(150) {};
+Bureaucrat::Bureaucrat() : _name("unknow"), _grade(151) {};
 
 Bureaucrat::Bureaucrat(std::string name, int grade) :  _name(name), _grade(grade){
 	this->check_grade();

@@ -3,6 +3,7 @@
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "Intern.hpp"
 
 int main(void)
 {
@@ -11,9 +12,12 @@ int main(void)
 	Bureaucrat employe("Maurice", 130);
 	Bureaucrat stagiaire("John", 150);
 
-	PresidentialPardonForm 	president("target1");
-	RobotomyRequestForm		robot("target2");
-	ShrubberyCreationForm	tree("target3");
+
+	Intern billy(void);
+
+	AForm *tree = billy.makeForm("ShrubberyCreationForm", "target1");
+	AForm *robot = billy.makeForm("RobotomyRequestForm", "target2");
+	AForm *president = billy.makeForm("PresidentialPardonForm", "target2");
 
 	std::cout << "\t\t\n---------- Tree -----------\n" << std::endl;
 
