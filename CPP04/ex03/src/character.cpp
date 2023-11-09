@@ -44,6 +44,11 @@ std::string const& Character::getName() const{
 }
 
 void Character::equip(AMateria* m){
+	if (m == NULL)
+	{
+		std::cout << "Can't equip an unexisting thing" << std::endl; 
+		return;
+	}
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->_inventory[i] == NULL)
@@ -57,14 +62,33 @@ void Character::equip(AMateria* m){
 	return;
 }
 void Character::unequip(int idx){
+	if (this->_inventory[idx])
+		std::cout << this->getName() << " is dropping something" << std::endl;	
+	else
+		std::cout << this->getName() << " isn't dropping anything" << std::endl;	
 	this->_inventory[idx] = NULL;
 }
 void Character::use(int idx, ICharacter& target){
-	this->_inventory[idx]->use(target);
+	if (this->_inventory[idx])
+		this->_inventory[idx]->use(target);
+	else
+		std::cout << "Trying to use an empty slot" << std::endl;
 }
 
 AMateria *Character::stuff_adress(int idx){
 	if (_inventory[idx])
 		return _inventory[idx];
 	return (NULL);
+}
+
+void Character::showInv(void)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->_inventory[i] == NULL)
+			std::cout << "\t[EMPTY]\t";
+		else
+			std::cout << "\t[" << _inventory[i]->getType() << "]\t";
+	}
+	std::cout << std::endl;
 }

@@ -66,3 +66,15 @@ AMateria* MateriaSource::createMateria(std::string const& type){
 	std::cerr << "This type does not exist or not create yet" << std::endl;
 	return NULL;
 }
+
+void MateriaSource::showMateria(void)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->_materia[i] == NULL)
+			std::cout << "\t[EMPTY]\t";
+		else
+			std::cout << "\t[" << _materia[i]->getType() << "]\t";
+	}
+	std::cout << std::endl;
+}

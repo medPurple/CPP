@@ -47,6 +47,9 @@
 		"stdexcept": "cpp",
 		"streambuf": "cpp",
 		"typeinfo": "cpp",
-		"file": "cpp"
+		"file": "cpp",
+		"fstream": "cpp",
+		"sstream": "cpp",
+		"ctime": "cpp"
 	}
 }
