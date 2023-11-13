@@ -17,7 +17,7 @@ class AForm {
 					virtual ~AForm();
 		
 		// Fonctions
-					virtual void beSigned(Bureaucrat ppl);
+					virtual void beSigned(Bureaucrat &ppl);
 					virtual void execute(Bureaucrat const& executor) const = 0;
 
 		// getter

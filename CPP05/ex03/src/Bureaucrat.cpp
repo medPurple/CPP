@@ -74,6 +74,7 @@ void Bureaucrat::check_grade() const{
 
 void Bureaucrat::signForm(AForm &form){
 	try {
+		
 		form.beSigned(*this);
 		std::cout << "\e[3m\e[34m [" << this->getName() << "] signed " << form.getName() << "\e[0m" << std::endl;
 	}

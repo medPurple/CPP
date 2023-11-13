@@ -15,7 +15,7 @@ class Intern{
 			~Intern();
 
 // Fonction
-			AForm *makeForm(std::string form, std::string target);
+			AForm *makeForm(std::string form, std::string target) const;
 
 // Getter / Setter
 
@@ -27,8 +27,8 @@ class Intern{
 	protected	:
 
 	private		:
-					AForm *createShrubbery(std::string target);
-					AForm *createRobotomy(std::string target);
-					AForm *createPresidential(std::string target);
+					AForm *createShrubbery(std::string target) const;
+					AForm *createRobotomy(std::string target) const;
+					AForm *createPresidential(std::string target) const;
 
 };

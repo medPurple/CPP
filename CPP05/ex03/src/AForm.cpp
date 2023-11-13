@@ -98,7 +98,8 @@ const char* AForm::InvalidFileException::what() const throw() {
 /*-------------------------Fonctions-----------------------------*/
 
 
-void AForm::beSigned(Bureaucrat ppl){
+void AForm::beSigned(Bureaucrat &ppl){
+
 	if (ppl.getGrade() > this->getGradeS())
 		throw GradeTooLowException();
 	if (ppl.getGrade() < 0)

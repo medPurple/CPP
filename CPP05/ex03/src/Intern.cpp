@@ -33,13 +33,13 @@ Intern::~Intern(){
 
 /*--------------- Function -------------- */
 
-AForm *Intern::makeForm(std::string form, std::string target){
+AForm *Intern::makeForm(std::string form, std::string target) const {
 	try{
 			int i = 0;
-			std::string list[3] = {	"ShrubberyCreationForm"
-									"RobotomyRequestForm"
+			std::string list[3] = {	"ShrubberyCreationForm",
+									"RobotomyRequestForm",
 									"PresidentialPardonForm"};
-		while (i < 4){ if (list[i] == form) break;}
+		while (i < 3){ if (list[i] == form) break;i++;}
 		switch (i)
 		{
 			case 0 :
@@ -59,13 +59,17 @@ AForm *Intern::makeForm(std::string form, std::string target){
 	return NULL;
 }
 
-AForm *Intern::createShrubbery(std::string target){
+AForm *Intern::createShrubbery(std::string target) const{
 	return new ShrubberyCreationForm(target);
 }
-AForm *Intern::createRobotomy(std::string target){
+AForm *Intern::createRobotomy(std::string target) const{
 	return new RobotomyRequestForm(target);
 }
-AForm *Intern::createPresidential(std::string target){
+AForm *Intern::createPresidential(std::string target) const{
 	return new PresidentialPardonForm(target);
 }
 /*--------------- Exception ------------- */
+
+const char* Intern::FormNotExistException::what() const throw() {
+	return ("[Form not found]");
+}
