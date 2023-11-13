@@ -15,6 +15,8 @@ int main(void)
 
 	Intern billy;
 
+	std::cout << "\t\t\n---------- Forn -----------\n" << std::endl;
+
 	AForm *tree = billy.makeForm("ShrubberyCreationForm", "target1");
 	AForm *robot = billy.makeForm("RobotomyRequestForm", "target2");
 	AForm *president = billy.makeForm("PresidentialPardonForm", "target2");
@@ -46,5 +48,8 @@ int main(void)
 	boss.executeForm(*president);
 
 	std::cout << "\n--------------------- End -----------------\n" << std::endl;
+	delete(robot);
+	delete(president);
+	delete(tree);
 	return 0;
 }

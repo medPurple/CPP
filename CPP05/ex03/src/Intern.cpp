@@ -43,19 +43,19 @@ AForm *Intern::makeForm(std::string form, std::string target) const {
 		switch (i)
 		{
 			case 0 :
-				std::cout << "Intern creates " << list[i] << std::endl;
+				std::cout << "\e[3m\e[32m" << "Intern creates " << list[i] << "\e[0m"  << std::endl;
 				return createShrubbery(target);
 			case 1 :
-				std::cout << "Intern creates " << list[i] << std::endl;
+				std::cout << "\e[3m\e[32m" << "Intern creates " << list[i] << "\e[0m"  << std::endl;
 				return createRobotomy(target);
 			case 2 :
-				std::cout << "Intern creates " << list[i] << std::endl;
+				std::cout << "\e[3m\e[32m" << "Intern creates " << list[i] << "\e[0m"  << std::endl;
 				return createPresidential(target);
 			default:
 				throw FormNotExistException();
 		}
 	}
-	catch (...){std::cout << "Intern can't discover a new form" << std::endl;}
+	catch (...){std::cout << "\e[3m\e[31m" << "Intern can't discover a new form"  << "\e[0m" << std::endl;}
 	return NULL;
 }
 
