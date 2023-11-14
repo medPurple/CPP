@@ -7,8 +7,7 @@
 class ScalarConverter
 {
 public			:
-                    static void conversion(std::string value);
-                    static void displayError(std::string msg, std::string value);
+                    static void convert(std::string value);
 
 protected   	:
 private     	:
@@ -27,7 +26,7 @@ void        char_converter(std::string str);
 void        int_converter(std::string str);
 void        float_converter(std::string str);
 void        double_converter(std::string str);
-
+void        displayError(std::string msg, std::string value);
 #define NOPRINT "This input isn't a printable character"
 #define IMPOSSIBLE "Impossible operation"
 #define INTLIMIT "Int limit reached"
