@@ -1,4 +1,4 @@
-DEFAULT_TARGET = identify
+DEFAULT_TARGET = iter
 TARGET ?= $(DEFAULT_TARGET)
 
 CXX = c++

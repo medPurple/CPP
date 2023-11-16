@@ -47,6 +47,9 @@
 		"stdexcept": "cpp",
 		"streambuf": "cpp",
 		"typeinfo": "cpp",
-		"serialization.hpp": "c"
+		"serialization.hpp": "c",
+		"ctime": "cpp",
+		"iomanip": "cpp",
+		"sstream": "cpp"
 	}
 }

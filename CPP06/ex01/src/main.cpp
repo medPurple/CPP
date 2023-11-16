@@ -10,7 +10,7 @@ int main(void){
 	test.size = 180;
 	test.unknow = true;
 
-	std::cout 	<< "Adress test2 : " << &test2 
+	std::cout 	<< "Adress test : " << &test
 				<< " AGE : " << test.age
 				<< " NAME : " << test.name
 				<< " SIZE : " << test.size

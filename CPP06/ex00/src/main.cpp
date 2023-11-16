@@ -1,6 +1,6 @@
 #include "ScalarConverter.hpp"
 
-int main(void)
+int main(int ac, char **av)
 {
     std::cout << "----- TEST CHAR ---------" << std::endl;
     ScalarConverter::convert("TEST");
@@ -16,6 +16,8 @@ int main(void)
 
     std::cout << "----- TEST INT ---------" << std::endl;
     ScalarConverter::convert("10");
+    std::cout << std::endl;
+    ScalarConverter::convert("42");
     std::cout << std::endl;
     ScalarConverter::convert("-10");
     std::cout << std::endl;
@@ -97,5 +99,9 @@ int main(void)
 
     std::cout << "--------- TEST ERROR -----------------" << std::endl;
     ScalarConverter::convert("\t");
+
+    std::cout << "--------- TEST PERSO -----------------" << std::endl;
+    if (ac == 2)
+        ScalarConverter::convert(av[1]);
     return 0;
 }

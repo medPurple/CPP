@@ -1,16 +1,4 @@
-#!/bin/bash
-
-if [ $# -eq 0 ]; then
-    echo "Usage: $0 <number_of_folders>"
-    exit 1
-fi
-
-number_of_folders=$1
-
-for ((i=0; i<$number_of_folders; i++)); do
-    folder_name="ex$(printf "%02d" $i)"
-    mkdir -p $folder_name/{src,include}
-    echo -e 'DEFAULT_TARGET = bureaucraft
+DEFAULT_TARGET = template
 TARGET ?= $(DEFAULT_TARGET)
 
 CXX = c++
@@ -64,5 +52,3 @@ fclean: clean
 re : fclean all
 
 .PHONY: all clean re
-' > $folder_name/Makefile
-done

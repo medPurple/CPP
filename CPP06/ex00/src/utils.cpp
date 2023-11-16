@@ -16,43 +16,43 @@ bool pseudoLitteral(std::string str){
 			std::cout 	<< "\t[" << str << "]" << std::endl
 						<< "char\t: " << IMPOSSIBLE << std::endl
 						<< "int\t: " << IMPOSSIBLE << std::endl
-						<< "float\t: " << str << std::endl
-						<< "double\t: " << "-inf" << std::endl;
+						<< "float\t: " << "\e[3m\e[32m" << str << "\e[0m" << std::endl
+						<< "double\t: " << "\e[3m\e[32m -inf \e[0m" << std::endl;
 			return true;
 		case 1:
 			std::cout 	<< "\t[" << str << "]" << std::endl
 						<< "char\t: " << IMPOSSIBLE << std::endl
 						<< "int\t: " << IMPOSSIBLE << std::endl
-						<< "float\t: " << str << std::endl
-						<< "double\t: " << "+inf" << std::endl;
+						<< "float\t: " << "\e[3m\e[32m" << str << "\e[0m" << std::endl
+						<< "double\t: " << "\e[3m\e[32m +inf \e[0m" << std::endl;
 			return true;
 		case 2:
 			std::cout 	<< "\t[" << str << "]" << std::endl
 						<< "char\t: " << IMPOSSIBLE << std::endl
 						<< "int\t: " << IMPOSSIBLE << std::endl
-						<< "float\t: " << str << std::endl
-						<< "double\t: " << "nan" << std::endl;
+						<< "float\t: " << "\e[3m\e[32m" << str << "\e[0m" << std::endl
+						<< "double\t: " << "\e[3m\e[32m nan \e[0m" << std::endl;
 			return true;
 		case 3:
 			std::cout 	<< "\t[" << str << "]" << std::endl
 						<< "char\t: " << IMPOSSIBLE << std::endl
 						<< "int\t: " << IMPOSSIBLE << std::endl
-						<< "float\t: " << "-inff" << std::endl
-						<< "double\t: " << str << std::endl;
+						<< "float\t: " << "\e[3m\e[32m -inff \e[0m" << std::endl
+						<< "double\t: " << "\e[3m\e[32m" << str << "\e[0m" << std::endl;
 			return true;
 		case 4:
 			std::cout 	<< "\t[" << str << "]" << std::endl
 						<< "char\t: " << IMPOSSIBLE << std::endl
 						<< "int\t: " << IMPOSSIBLE << std::endl
-						<< "float\t: " << "+inff" << std::endl
-						<< "double\t: " << str << std::endl;
+						<< "float\t: " << "\e[3m\e[32m +inff \e[0m" << std::endl
+						<< "double\t: " << "\e[3m\e[32m" << str << "\e[0m" <<  std::endl;
 			return true;
 		case 5:
 			std::cout 	<< "\t[" << str << "]" << std::endl
 						<< "char\t: " << IMPOSSIBLE << std::endl
 						<< "int\t: " << IMPOSSIBLE << std::endl
-						<< "float\t: " << "nanf" << std::endl
-						<< "double\t: " << str << std::endl;
+						<< "float\t: " << "\e[3m\e[32m nanf \e[0m" << std::endl
+						<< "double\t: " << "\e[3m\e[32m" << str << "\e[0m" << std::endl;
 			return true;				
 		default:
 			return false;
@@ -60,69 +60,87 @@ bool pseudoLitteral(std::string str){
 }
 
 void char_converter(std::string str){
-
-	std::cout	<< "\t[" << str << "]" << std::endl 
-				<< "char\t: " << static_cast<const char>(str[0]) << std::endl 
-				<< "int\t: " << static_cast<const int>(str[0]) << std::endl
-				<< "float\t: " << static_cast<const float>(str[0]) << ".0f" <<std::endl
-				<< "double\t: " << static_cast<const double>(str[0]) << ".0" << std::endl;
-	return;
+	try{
+		std::cout << "char:\t \e[3m\e[32m";
+		char a = toChar(str);
+		std::cout << a << "\e[0m" << std::endl;
+	} catch (std::exception& e) {
+		std::cerr << e.what() << std::endl;
+	}
+	try{
+		std::cout << "int:\t \e[3m\e[32m";
+		int b = toInt(str);
+		std::cout << b << "\e[0m" << std::endl;
+	} catch (std::exception& e) {
+		std::cerr << e.what() << std::endl;
+	}
+	float f = toFloat(str);
+	std::cout << "float:\t \e[3m\e[32m" << std::fixed << std::setprecision(1) << f << "f" << "\e[0m" << std::endl;
+	double d = toDouble(str);
+	std::cout << "double:\t \e[3m\e[32m" << d << "\e[0m" << std::endl;
 }
 
 void int_converter(std::string str){
-
-	long nb = strtol(str.c_str(), NULL, 10);
-	std::cout	<< "\t[" << str << "]" << std::endl 
-				<< "char\t: " << IMPOSSIBLE << std::endl;
-	if (nb < -2147483648 || nb  > 2147483647)
-		std::cout 	<< "int\t: " << INTLIMIT << std::endl;
-	else
-		std::cout << "int\t: " << static_cast<const int>(nb) << std::endl;
-	if (nb <= 1000000 && nb >= -1000000){
-		std::cout 	<< "float\t: " << static_cast<const float>(nb) << ".0f" <<std::endl
-					<< "double\t: " << static_cast<const double>(nb) << ".0" << std::endl;}
-	else{
-		std::cout 	<< "float\t: " << static_cast<const float>(nb) << "f" <<std::endl
-					<< "double\t: " << static_cast<const double>(nb) << std::endl;}
+	try{
+		std::cout << "char:\t \e[3m\e[32m";
+		char a = toChar(str);
+		std::cout << a << "\e[0m" << std::endl;
+	} catch (std::exception& e) {
+		std::cerr << e.what() << std::endl;
+	}
+	try{
+		std::cout << "int:\t \e[3m\e[32m";
+		int b = toInt(str);
+		std::cout << b << "\e[0m" << std::endl;
+	} catch (std::exception& e) {
+		std::cerr << e.what() << std::endl;
+	}
+	float f = toFloat(str);
+	std::cout << "float:\t \e[3m\e[32m" << std::fixed << std::setprecision(1) << f << "f" << "\e[0m" << std::endl;
+	double d = toDouble(str);
+	std::cout << "double:\t \e[3m\e[32m" << d << "\e[0m" << std::endl;
 }
 
 void float_converter(std::string str){
-	int dot = 0;
-	for (int i = 0; str[i]; i++)
-		if (str[i] == '.')
-			dot++;
-	std::cout	<< "\t[" << str << "]" << std::endl 
-				<< "char\t: " << IMPOSSIBLE << std::endl;
-	float nb = strtof(str.c_str(), NULL);
-	if (nb < (float)-2147483648 || nb  > (float)2147483647)
-		std::cout 	<< "int\t: " << INTLIMIT << std::endl;
-	else
-		std::cout << "int\t: " << static_cast<const int>(nb) << std::endl;
-	std::cout 	<< "float\t: " << str << std::endl;
-	if (dot == 1)
-		std::cout 	<< "double\t: " <<  static_cast<const double>(nb) << std::endl;
-	else
-		std::cout 	<< "double\t: " <<  static_cast<const double>(nb) << ".0" << std::endl;
+	try{
+		std::cout << "char: ";
+		char a = toChar(str);
+		std::cout << a << "\e[0m" << std::endl;
+	} catch (std::exception& e) {
+		std::cerr << e.what() << std::endl;
+	}
+	try{
+		std::cout << "int:\t \e[3m\e[32m";
+		int b = toInt(str);
+		std::cout << b << "\e[0m" << std::endl;
+	} catch (std::exception& e) {
+		std::cerr << e.what() << std::endl;
+	}
+	float f = toFloat(str);
+	std::cout << "float:\t \e[3m\e[32m" << std::fixed << std::setprecision(1) << f << "f" << "\e[0m" << std::endl;
+	double d = toDouble(str);
+	std::cout << "double:\t \e[3m\e[32m" << d << "\e[0m" << std::endl;
 }
 
 void double_converter(std::string str){
-	int dot = 0;
-	for (int i = 0; str[i]; i++)
-		if (str[i] == '.')
-			dot++;
-	double nb = strtod(str.c_str(), NULL);
-	std::cout	<< "\t[" << str << "]" << std::endl 
-				<< "char\t: " << IMPOSSIBLE << std::endl;
-	if (nb < (double)-2147483648 || nb  > (double)2147483647)
-		std::cout 	<< "int\t: " << INTLIMIT << std::endl;
-	else
-		std::cout << "int\t: " << static_cast<const int>(nb) << std::endl;
-	if (dot == 1)
-		std::cout 	<< "float\t: " <<  static_cast<const float>(nb) << "f" << std::endl;
-	else
-		std::cout 	<< "float\t: " <<  static_cast<const float>(nb) << ".0f" << std::endl;
-	std::cout 	<< "double\t: " << str << std::endl;
-
+	try{
+		std::cout << "char:\t \e[3m\e[32m";
+		char a = toChar(str);
+		std::cout << a << std::endl;
+	} catch (std::exception& e) {
+		std::cerr << e.what() << std::endl;
+	}
+	try{
+		std::cout << "int:\t \e[3m\e[32m";
+		int b = toInt(str);
+		std::cout << b << "\e[0m" << std::endl;
+	} catch (std::exception& e) {
+		std::cerr << e.what() << std::endl;
+	}
+	float f = toFloat(str);
+	std::cout << "float:\t \e[3m\e[32m" << std::fixed << std::setprecision(1) << f << "f" << "\e[0m" << std::endl;
+	double d = toDouble(str);
+	std::cout << "double:\t \e[3m\e[32m" << d << "\e[0m" << std::endl;
 }
 
 std::string getType(std::string str){
@@ -158,8 +176,63 @@ std::string getType(std::string str){
 		return "double";
 	else if (dot < 1 && number == true && sign < 2 && f < 1)
 		return "int";
-	else if (dot == 0 && number == false && str.length() == 1)
+	else if (str.length() == 1 && isChar(str) == true)
 		return "char";
 	else
 		return "error";
+}
+
+char	toChar(std::string str){
+	char c;
+	double num = atof(str.c_str());
+	if (isChar(str) == true)
+		c = static_cast<const char>(str[0]);
+	else{
+			if (num < 33 || num > 126)
+				throw Isprintable();
+			c = static_cast<const char>(num);
+	}
+
+	return c;
+}
+
+int	toInt(std::string str){
+	char	*end;
+	long	num;
+	num = strtol(str.c_str(), &end, 10);
+	if (num > INT_MAX)
+		throw IntConversionO();
+	if (num < INT_MIN)
+		throw IntConversionU();
+	if (isChar(str) == false)
+		num = strtol(str.c_str(), &end, 10);
+	else
+		num = static_cast<const int>(str[0]);
+	return num;
+}
+
+float	toFloat(std::string str){
+	char	*end;
+	float	num;
+	if (isChar(str) == false)
+		num = strtof(str.c_str(), &end);
+	else
+		num = static_cast<const float>(str[0]);
+	return num;
+}
+
+double	toDouble(std::string str){
+	char	*end;
+	double	num;
+	if (isChar(str) == false)
+		num = strtod(str.c_str(), &end);
+	else
+		num = static_cast<const double>(str[0]);
+	return num;
+}
+
+bool	isChar(std::string str) {
+	if (str.length() == 1 && std::isalpha(str[0]))
+		return true;
+	return false;
 }
