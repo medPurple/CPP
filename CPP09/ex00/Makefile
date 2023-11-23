@@ -2,7 +2,7 @@ DEFAULT_TARGET = btc
 TARGET ?= $(DEFAULT_TARGET)
 
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++11
 
 SRC_DIR = src
 OBJ_DIR = .obj

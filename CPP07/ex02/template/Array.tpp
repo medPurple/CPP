@@ -1,5 +1,5 @@
 template<typename T>
-Array<T>::Array() : _array(nullptr), _size(0) {
+Array<T>::Array() : _array(NULL), _size(0) {
     if (msg_const == true) {
         std::cout << Array_DC << std::endl;
     }
@@ -13,7 +13,7 @@ Array<T>::Array(unsigned int n) : _array(new T[n]), _size(n) {
 }
 
 template<typename T>
-Array<T>::Array(const Array& rhs) : _array(nullptr), _size(0) {
+Array<T>::Array(const Array& rhs) : _array(NULL), _size(0) {
     *this = rhs;
     if (msg_const == true){
         std::cout << Array_CC << std::endl;

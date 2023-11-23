@@ -3,53 +3,48 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <vector>
-#include <algorithm>
-#include <iomanip>
-#include <stdexcept>
-#include <regex>
+#include <map>
 #include <string>
+#include <stdexcept>
 #include <limits>
-
-struct BitcoinPrice {
-    std::string date;
-    double value;
-};
 
 class BitcoinExchange {
     public:
         ~BitcoinExchange();
-    // Parametric 
+
+        // Parametric Constructor
         BitcoinExchange(const std::string& databaseFilename);
-        
-    // Function
+
+        // Function
         void calculateBitcoinValue(const std::string& inputFilename);
 
-    // Exception
-        class   NoDateException : public std::exception {
-                public:
-                    virtual const char* what() const throw();
-            };
-        class   NoRateException : public std::exception {
-                public:
-                    virtual const char* what() const throw();
-            };
+        // Exception
+        class NoDateException : public std::exception {
+        public:
+            virtual const char* what() const throw();
+        };
+        class NoRateException : public std::exception {
+        public:
+            virtual const char* what() const throw();
+        };
+
     private:
-    // Coplien
-                BitcoinExchange();
-                BitcoinExchange(const BitcoinExchange& rhs);
-                BitcoinExchange &operator=(const BitcoinExchange& rhs);
+        // Coplien
+        BitcoinExchange();
+        BitcoinExchange(const BitcoinExchange& rhs);
+        BitcoinExchange& operator=(const BitcoinExchange& rhs);
 
-                std::vector<BitcoinPrice> bitcoinPrices;
-                double getExchangeRate(const std::string& dateStr);
-                std::string findClosestDate(const std::string& targetDate);
+        std::map<std::string, double> bitcoinPrices;
+        double getExchangeRate(const std::string& dateStr);
+        std::string findClosestDate(const std::string& targetDate);
 
-                void _display_constructor(std::string msg){
-                    std::cout << "\x1b[33m \x1b[3m" << msg << "\x1b[0m" << std::endl;
-                } 
-        
+        void _display_constructor(std::string msg) {
+            std::cout << "\x1b[33m \x1b[3m" << msg << "\x1b[0m" << std::endl;
+        }
+
+        // Function to populate bitcoinPrices from the file
+        void populateBitcoinPrices(const std::string& databaseFilename);
 };
-
 
 static bool msg_const = false;
 

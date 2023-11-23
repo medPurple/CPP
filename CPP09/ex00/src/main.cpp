@@ -5,7 +5,6 @@ int main(int argc, char* argv[]) {
         std::cerr << "Usage: " << argv[0] << " input_file.txt" << std::endl;
         return 1;
     }
-
     BitcoinExchange bitcoinExchange("data.csv");
     bitcoinExchange.calculateBitcoinValue(argv[1]);
 

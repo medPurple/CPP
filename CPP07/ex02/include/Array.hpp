@@ -4,6 +4,7 @@
 
 #include <string>
 #include <iostream>
+#include <cstdlib>
 
 template<typename T>
 class Array {
@@ -33,4 +34,4 @@ static bool msg_const = false;
 #define Array_DD "[Default] Destructor called"
 
 
-#include "../template/Array.tpp"  // Inclure les templates ici pour que le compilateur puisse les instancier
+#include "../template/Array.tpp"

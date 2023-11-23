@@ -8,13 +8,12 @@ int main()
     sp.addNumber(17);
     sp.addNumber(9);
     sp.addNumber(11);
-//    std::cout << sp;
+
     std::cout << sp.shortestSpan() << std::endl;
     std::cout << sp.longestSpan() << std::endl;
 
     Span sp2 = Span(15);
     sp2.AddVector();
-//    std::cout << sp2;
     std::cout << sp2.shortestSpan() << std::endl;
     std::cout << sp2.longestSpan() << std::endl;
     return 0;
