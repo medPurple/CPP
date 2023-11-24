@@ -24,8 +24,22 @@ template <typename T>
 MutantStack<T>::~MutantStack(){
     if (msg_const == true)
         _display_constructor(MUTANT_DD);
+} 
+
+template<typename T>
+void    print(const MutantStack<T> &tab){
+    std::stack<T> tmp = tab;
+     std::cout << "[Stack of " << tmp.size() << " integers]: ";
+    while (!tmp.empty()) {
+        std::cout << "[" << tmp.top() << "]";
+        tmp.pop();
+    }
+    std::cout << std::endl;
+    return;
 }
 
+void _display_constructor(std::string msg){
+    std::cout << "\x1b[33m \x1b[3m" << msg << "\x1b[0m" << std::endl;}
 
 /*---------------- Operator ------------- */
 

@@ -10,6 +10,7 @@ INCLUDE_DIR = include
 TEMPLATE_DIR = template
 SRC_FILES = $(wildcard $(SRC_DIR)/*.cpp)
 HDR_FILES = $(wildcard $(INCLUDE_DIR)/*.hpp)
+TMP_FILES = $(wildcard $(TEMPLATE_DIR)/*.tpp)
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC_FILES))
 
 NUM_FILES = $(words $(SRC_FILES))
@@ -33,7 +34,7 @@ $(TARGET): $(OBJ_FILES)
 	$(USAGE)
 	
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(HDR_FILES)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(HDR_FILES) $(TMP_FILES)
 	@mkdir -p $(@D)
 	@$(eval CUR_FILE := $(shell echo $$(($(CUR_FILE) + 1))))
 	@$(eval PERCENT := $(shell echo $$(($(CUR_FILE) * 100 / $(NUM_FILES)))))

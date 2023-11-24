@@ -22,5 +22,4 @@ bool    easyfind(T& container, int num);
 template<typename T>
 void    print(T& tab);
 
-
 #include "../template/easyfind.tpp"

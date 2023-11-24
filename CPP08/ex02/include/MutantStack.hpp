@@ -4,6 +4,8 @@
 #include <stack>
 #include <deque>
 #include <iterator>
+#include <vector>
+#include <list>
 
 template <typename T>
 class MutantStack : public std::stack<T>
@@ -25,13 +27,15 @@ class MutantStack : public std::stack<T>
     protected   	:
 
     private     	:
-                void _display_constructor(std::string msg){
-                    std::cout << "\x1b[33m \x1b[3m" << msg << "\x1b[0m" << std::endl;
-                } 
 
 };
 
 static bool msg_const = false;
+
+void _display_constructor(std::string msg);
+
+template <typename T> 
+void    print(const MutantStack<T> &tab);
 
 #define MUTANT_DC "[Default] Constructor called for MUTANT CLASS"
 #define MUTANT_PC "[Parametric] Constructor called for MUTANT CLASS"
