@@ -3,7 +3,7 @@
 #include <iostream>
 #include <stack>
 #include <sstream>
-
+#include <cstdlib>
 
 int evaluateRPN(char *expression);
 

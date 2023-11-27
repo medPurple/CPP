@@ -50,7 +50,7 @@ int evaluateRPN(char *expression) {
             }
         }
     }
-    if (operation > 0)
+    if (operation > 0  && operandStack.size() == 1)
         return operandStack.top();
     else
         throw ErrorException();
