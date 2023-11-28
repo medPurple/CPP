@@ -8,42 +8,35 @@
 #include <stdexcept>
 #include <limits>
 
-class BitcoinExchange {
-    public:
-        ~BitcoinExchange();
 
-        // Parametric Constructor
-        BitcoinExchange(const std::string& databaseFilename);
+class BitcoinExchange{
+	public :
+	
+		BitcoinExchange();
+		BitcoinExchange(const BitcoinExchange &src);
+		~BitcoinExchange();
 
-        // Function
-        void calculateBitcoinValue(const std::string& inputFilename);
+		BitcoinExchange operator=(const BitcoinExchange &rhs);
+		void calcValue(std::string input);
 
-        // Exception
-        class NoDateException : public std::exception {
+        class ErrorException : public std::exception {
         public:
             virtual const char* what() const throw();
-        };
-        class NoRateException : public std::exception {
-        public:
-            virtual const char* what() const throw();
+
         };
 
-    private:
-        // Coplien
-        BitcoinExchange();
-        BitcoinExchange(const BitcoinExchange& rhs);
-        BitcoinExchange& operator=(const BitcoinExchange& rhs);
+	private :
+		std::map<std::string, double>	_data;
 
-        std::map<std::string, double> bitcoinPrices;
-        double getExchangeRate(const std::string& dateStr);
-        std::string findClosestDate(const std::string& targetDate);
-
+		void fill_data(std::ifstream &file);
+		std::string checkDate(std::string date, std::string line);
+        double checkAmount(std::string amount, std::string line);
+		void addValue(std::map<std::string, double> &map, std::string date, double amount);
+        
         void _display_constructor(std::string msg) {
             std::cout << "\x1b[33m \x1b[3m" << msg << "\x1b[0m" << std::endl;
         }
-
-        // Function to populate bitcoinPrices from the file
-        void populateBitcoinPrices(const std::string& databaseFilename);
+	
 };
 
 static bool msg_const = false;

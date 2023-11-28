@@ -1,111 +1,132 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: purple <medpurple@student.42.fr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/29 13:32:12 by amiguez           #+#    #+#             */
+/*   Updated: 2023/11/28 07:34:10 by purple           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange() {
-    if (msg_const == true)
-        _display_constructor(BE_DC);
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& src){(void) src;}
+BitcoinExchange::~BitcoinExchange(){}
+BitcoinExchange BitcoinExchange::operator=(const BitcoinExchange &rhs){(void) rhs; return *this;}
+
+BitcoinExchange::BitcoinExchange(){
+	
+	std::ifstream fdata("data.csv");
+	if(!fdata.is_open())
+		throw ErrorException();
+
+	fill_data(fdata);
+	fdata.close();
 }
 
-BitcoinExchange::BitcoinExchange(const std::string& databaseFilename) {
-    populateBitcoinPrices(databaseFilename);
-    if (msg_const == true)
-        _display_constructor(BE_PC);
+void	BitcoinExchange::fill_data(std::ifstream &file){
+	
+	std::string line;
+	std::string::iterator it;
+	
+	std::getline(file,line,'\n');
+	while (std::getline(file, line, '\n')){
+		if (line.find(',') == std::string::npos ){
+			file.close();
+			throw ErrorException();
+		}
+		std::string date = line.substr(0, line.find(','));
+		std::string amount = line.substr(line.find(',') + 1 , line.length());
+		addValue(_data, checkDate(date, line), checkAmount(amount, line));
+	}
+	//addValue(_data, "0000-00-00", -1);
 }
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& rhs) {
-    *this = rhs;
-    if (msg_const == true)
-        _display_constructor(BE_CC);
+
+void BitcoinExchange::addValue(std::map<std::string, double> &map, std::string date, double amount){
+	map[date] = amount;
 }
 
-BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& rhs) {
-    if (this != &rhs)
-        *this = rhs;
-    if (msg_const == true)
-        _display_constructor(BE_AO);
-    return *this;
+
+std::string BitcoinExchange::checkDate(std::string date, std::string line){
+	(void)line;
+
+    int	y = -1, m = -1, d = -1;
+	
+	sscanf(date.c_str(), "%d-%d-%d", &y, &m, &d);
+
+	for (size_t i = 0; i < date.length(); i++){
+		if (i == 4 || i == 7){
+			if (date[i] != '-')
+				throw ErrorException(); // check if the date is valid
+		}
+		else if (!isdigit(date[i]))
+				throw ErrorException(); // check if the date is valid
+	}
+	if (date.length() != 10)
+		throw ErrorException(); // check if the date is valid
+	if (y < 0 || y > 2023 || m <= 0 || m > 12 || d <= 0 || d > 31) 
+		throw ErrorException();; // check if the date is valid
+	return (date);
 }
 
-BitcoinExchange::~BitcoinExchange() {
-    if (msg_const == true)
-        _display_constructor(BE_DD);
+double BitcoinExchange::checkAmount(std::string amount, std::string line){
+	char *check;
+	
+    (void) line;
+	if (amount.length() == 0)
+		throw ErrorException();
+	double dAmount = std::strtod(amount.c_str(), &check);
+	if (dAmount < 0 || dAmount > 2147483647)
+		throw ErrorException();
+	if (check[0])
+		throw ErrorException();
+	if (amount.find(' ') != std::string::npos)
+		throw ErrorException();
+	return (dAmount);
 }
 
-void BitcoinExchange::calculateBitcoinValue(const std::string& inputFilename) {
-    std::ifstream inputFile(inputFilename.c_str());
-    if (!inputFile.is_open()) {
-        std::cerr << "Error: could not open input file." << std::endl;
-        return;
-    }
 
-    std::string line;
-    while (std::getline(inputFile, line)) {
-        if (line.find("date | value") != std::string::npos)
-            continue;
+void BitcoinExchange::calcValue(std::string input){
 
-        std::istringstream ss(line);
-        std::string date;
-        double value;
+	std::string line;
 
-        ss >> date;
-        ss.ignore(std::numeric_limits<std::streamsize>::max(), '|');
-        ss >> value;
+	std::ifstream finput(input.c_str());
+	if(!finput.is_open())
+		throw ErrorException();
+	
+	std::getline(finput,line,'\n');
+	while (std::getline(finput, line, '\n')){
+	
+	try{
+			
+		if (line.find(" | ") == std::string::npos )
+			throw ErrorException();
 
-        try {
-            double exchangeRate = getExchangeRate(date);
-            double result = value * exchangeRate;
-            std::cout << date << " => " << value << " = " << result << std::endl;
-        } catch (std::exception& e) {
-            std::cerr << e.what() << std::endl;
-        }
-    }
+		std::string date = checkDate(line.substr(0, line.find(" | ")), line);
+		double amount = checkAmount(line.substr(line.find(" | ") + 3 , line.length()), line);
+		if (amount > 1000)
+			throw ErrorException();
+
+		std::map<std::string, double>::iterator it = _data.upper_bound(date);
+		it.operator--();
+		if (it == _data.begin())
+		    throw ErrorException();
+
+		std::cout << date << " => " << amount << " = " << amount * it->second << std::endl;
+
+	} catch (std::exception &e){
+		std::cout <<e.what() << std::endl;
+	}
+	
+	}
+	finput.close();
 }
 
-double BitcoinExchange::getExchangeRate(const std::string& dateStr) {
-    std::string closestDate = findClosestDate(dateStr);
-    std::cout << closestDate << std::endl;
 
-    // Use map.find to look up the value for the date
-    std::map<std::string, double>::iterator it = bitcoinPrices.find(closestDate);
-    if (it != bitcoinPrices.end()) {
-        return it->second;
-    }
-
-    throw NoRateException();
-}
-
-std::string BitcoinExchange::findClosestDate(const std::string& targetDate) {
-    std::map<std::string, double>::const_iterator itmp = bitcoinPrices.begin();
-    for (std::map<std::string, double>::const_iterator it = bitcoinPrices.begin(); it != bitcoinPrices.end(); ++it) {
-        if (it == bitcoinPrices.begin())
-            itmp = it;
-        if (it->first > targetDate)
-            return itmp->first;
-        itmp = it;
-    }
-
-    throw NoDateException();
-}
-
-void BitcoinExchange::populateBitcoinPrices(const std::string& databaseFilename) {
-    std::ifstream file(databaseFilename.c_str());
-    if (!file.is_open()) {
-        std::cerr << "Error: could not open bitcoin database file." << std::endl;
-        return;
-    }
-
-    std::string line;
-    while (std::getline(file, line)) {
-        if (line.find("date,exchange_rate") != std::string::npos)
-            continue;
-
-        std::istringstream ss(line);
-        std::string date;
-        double value;
-
-        ss >> date;
-        ss.ignore(std::numeric_limits<std::streamsize>::max(), ',');
-        ss >> value;
-
-        bitcoinPrices[date] = value; // Store in the map
-    }
+const char *BitcoinExchange::ErrorException::what() const throw()
+{
+	return ("\x1b[31m \x1b[3m Error \x1b[0m");
 }
